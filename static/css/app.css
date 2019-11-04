@@ -1,0 +1,49 @@
+.chatbox {
+  padding: 1em;
+  overflow-y: scroll;
+}
+
+.reply {
+  float: left;
+  margin: 0.3em 40% 0.3em 0;
+  white-space: pre-wrap;
+  padding: 0.5em;
+  background: #e6e7e8;
+  border-radius: 0.5em;
+}
+
+.message {
+  float: right;
+  margin: 0.3em 0 0.3em 40%;
+  white-space: pre-wrap;
+  padding: 0.5em;
+  background: #007bff;
+  border-radius: 0.5em;
+  color: white;
+}
+
+/* .loading {
+  font-size: 30px;
+} */
+
+.loading:after {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: bottom;
+  -webkit-animation: ellipsis steps(4, end) 900ms infinite;
+  animation: ellipsis steps(4, end) 900ms infinite;
+  content: "\2026"; /* ascii code for the ellipsis character */
+  width: 0px;
+}
+
+@keyframes ellipsis {
+  to {
+    width: 1.25em;
+  }
+}
+
+@-webkit-keyframes ellipsis {
+  to {
+    width: 1.25em;
+  }
+}

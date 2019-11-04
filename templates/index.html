@@ -1,0 +1,104 @@
+<!--
+Copyright 2018 IBM Corp. All Rights Reserved.
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+    http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MAX Question Answering Chatbot Demo</title>
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/app.css">
+    <script src="static/js/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container-fluid ibm-code">
+        <div class="row justify-content-center">
+            <div class="col-md-12 title-section">
+                <h1 class="text-center">MAX Question Answering Chatbot Demo</h1>
+            </div>
+            <div class="col-md-8">
+                <div id="chatbox" class="panel-heading chatbox clearfix border">
+                    <div class="panel-title reply">{{ display_text }}</div>
+                </div>
+                <div class="input-group" width="100%">
+                    <input id="text-input" type="text" name="input" class="form-control border-top-0"/>
+                    <div class="input-group-append">
+                        <button id="submit" type="submit" class="btn btn-primary" onclick="sendRequest();">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <footer class="footer">
+            <br/>
+            <p style="float:left">Created at the IBM Center for Open-Source Data & AI Technologies</p>
+            <p style="float:right">
+                Source code available on <a href="">GitHub</a>
+            </p>
+        </footer>
+    </div>
+
+</body>
+
+<script type="text/javascript">
+    let state = 1
+    let matches = []
+    const defaultLoadingMessage = "QnAIT is thinking"
+    const secretLoadingMessages = ['Hold on, QnAIT is skimming the textbook for you', 'Give us a second, our bot escaped', 'Our intern is typing your answer for you']
+
+    // sends request to Flask containing user input and state of conversation
+    function sendRequest() {
+        let input = $("#text-input").val();
+        $("#chatbox").append('<div class="panel-title message">' + input + '</div>')
+        $("#text-input").val("");
+        
+        // input validation when user must select a number
+        if (state == 2) {
+            if (isNaN(input)) {
+                $("#chatbox").append('<div class="panel-title reply">Please type in one of the numerical options above.</div>')
+                return
+            }
+            input = matches[parseInt(input) - 1]
+        }
+
+        let loadingMessage = Math.floor(Math.random() * 10) < 5 ? defaultLoadingMessage : secretLoadingMessages[Math.floor(Math.random() * secretLoadingMessages.length)]
+        let loadingTimeout = setTimeout(() => $("#chatbox").append(`<div class="panel-title reply loading"><i>${loadingMessage}</div>`), 1000)
+
+        $.ajax({
+            type: "POST",
+            url: "{{ url_for('chat') }}",
+            data: JSON.stringify({"input": input,
+                    "state": state}),
+            contentType: "application/json",
+            success: function(data) {
+                clearTimeout(loadingTimeout)
+                $(".loading").remove()
+                $("#chatbox").append('<div class="panel-title reply">' + data["response"] + '</div>')
+                state = data["state"];
+                matches = data["matches"]
+            }
+        });
+    }
+
+    // send message when user presses enter
+    $("#text-input").keypress(function(key) {
+        if (key.which == 13) {
+            sendRequest();
+            return false;
+        }
+    });
+</script>
+
+</html>
