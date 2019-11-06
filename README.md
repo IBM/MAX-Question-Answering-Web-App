@@ -89,13 +89,13 @@ $ curl -X POST "http://localhost:5000/model/predict" -H "accept: application/jso
 Clone the web app repository locally. In a terminal, run the following command:
 
 ```
-$ git clone https://github.ibm.com/CODAIT/QnAIT.git
+$ git clone https://github.com/IBM/MAX-Question-Answering-Web-App.git
 ```
 
 Change directory into the repository base folder:
 
 ```
-$ cd QnAIT
+$ cd MAX-Question-Answering-Web-App
 ```
 
 #### Install dependencies
