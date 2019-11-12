@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 from chatbot import *  # functions for each state
 import json
+import random
 
 app = Flask(__name__)
 
@@ -83,7 +84,7 @@ def chat():
         response, new_state, matches = get_next_text(model_endpoint, input_text, narrowed_titles)
         return jsonify({"response": response, "state": new_state, "matches": matches})
     elif request.method == "GET":
-        return render_template("index.html", display_text=f"Hi! My name is QnAit and I'm answering Biology questions today. To get started, please provice a topic. For example: {random.choice(["brain", "blood", "cells"])}.", state=1)
+        return render_template("index.html", display_text=f"Hi! My name is QnAit and I'm answering Biology questions today.\nTo get started, please provice a topic. For example: {random.choice(['brain', 'blood', 'cells'])}.", state=1)
 
 if __name__ == "__main__":
     with open("txt.json", "r") as file:
