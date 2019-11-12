@@ -59,7 +59,7 @@ and web applications.
 To run the docker image, which automatically starts the model serving API, run:
 
 ```
-$ docker run -it -p 5000:5000 codait/max-question-answering-web-app
+$ docker run -it -p 5000:5000 codait/max-question-answering
 ```
 
 This will pull a pre-built image from Docker Hub (or use an existing image if already cached locally) and run it.
@@ -74,12 +74,12 @@ Go to `http://localhost:5000` to load it. From there you can explore the API and
 Use the `model/predict` endpoint to enter in text data and get answers from the model.
 
 The [model samples folder](https://github.ibm.com/CODAIT/MAX-Question-Answering/tree/master/samples)
-contains one image you can use to test out the API, or you can use your own.
+contains samples you can use to test out the API, or you can use your own.
 
 You can also test it on the command line, for example:
 
 ```
-$ curl -X POST "http://localhost:5000/model/predict" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"paragraphs\": [{\"context\": \"Super Bowl 50 was an American football game to determine the champion of the National Football League (NFL) for the 2015 season. The American Football Conference (AFC) champion Denver Broncos defeated the National Football Conference (NFC) champion Carolina Panthers to earn their third Super Bowl title. The game was played on February 7, 2016, at Levi's Stadium in the San Francisco Bay Area at Santa Clara, California. As this was the 50th Super Bowl, the league emphasized the \\\"golden anniversary\\\" with various gold-themed initiatives, as well as temporarily suspending the tradition of naming each Super Bowl game with Roman numerals (under which the game would have been known as \\\"Super Bowl L\\\"), so that the logo could prominently feature the Arabic numerals 50.\", \"qas\": [{\"question\": \"Which NFL team represented the AFC at Super Bowl 50?\"}, {\"question\": \"Which NFL team represented the NFC at Super Bowl 50?\"}, {\"question\": \"Where did Super Bowl 50 take place?\"}, {\"question\": \"Which NFL team won Super Bowl 50?\"}, {\"question\": \"What color was used to emphasize the 50th anniversary of the Super Bowl?\"}, {\"question\": \"What was the theme of Super Bowl 50?\"},{\"question\": \"What day was the game played on?\"}, {\"question\": \"What is the AFC short for?\"}]}]}"
+$ curl -X POST "http://localhost:5000/model/predict" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"paragraphs\": [{ \"context\": \"John lives in Brussels and works for the EU\", \"questions\": [\"Where does John Live?\",\"What does John do?\",\"What is his name?\" ]},{ \"context\": \"Jane lives in Paris and works for the UN\", \"questions\": [\"Where does Jane Live?\",\"What does Jane do?\" ]}]}"
 ```
 
 ### Build the Web App
@@ -129,7 +129,7 @@ $ python app.py --port=[new port] --model=[endpoint url including protocol and p
 To run the web app with Docker the containers running the web server and the REST endpoint need to share the same
 network stack. This is done in the following steps:
 
-Modify the command that runs the Facial Age Estimator REST endpoint to map an additional port in the container to a
+Modify the command that runs the MAX Question Answering REST endpoint to map an additional port in the container to a
 port on the host machine. In the example below it is mapped to port `8000` on the host but other ports can also be used.
 
     docker run -it -p 5000:5000 -p 8000:8000 --name max-question-answering codait/max-question-answering
