@@ -1,3 +1,5 @@
+[![Website Status](https://img.shields.io/website/http/max-question-answering.max.us-south.containers.appdomain.cloud/swagger.json.svg?label=api+demo)](http://max-question-answering-web-app.max.us-south.containers.appdomain.cloud/)
+
 # Create a machine learning powered web app to answer questions
 
 Ever found yourself wondering what mitochondria are? Perhaps you are curious about how neurons communicate with each other? A Google search works well to answer your questions, but how about something still digestible, but more precise? This code pattern will show you how to build a chatbot that will answer questions found in a college biology textbook. In this pattern, the textbook used is [Biology 2e](https://books.google.com/books/about/Biology_2e.html?id=JLPQtwEACAAJ) by Mary Ann Clark, Matthew Douglas, and Jung Choi. 
