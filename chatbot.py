@@ -16,19 +16,20 @@
 
 import json
 import requests
+import random
 from similarity.metric_lcs import MetricLCS
 
+def get_opening_message():
+    '''The variable starting message.'''
+    return f"Hi, my name is QnAit!\nI'm answering Biology questions today.\nTo get started, please provice a topic. For example: {random.choice(['brain', 'blood', 'cells'])}."
 
-def choice():
+def get_choice():
+    '''Return the value of the global `choice` variable'''
     return choice
 
 
-# threshold for how far (string distance) two strings can be from each other
-# to be considered a match
-distance_threshold = 0.4
-
-
-def get_close_matches(topic, titles):
+def get_close_matches(topic, titles, distance_threshold = 0.4):
+    '''Return matching titles for a topic.'''
     metric_lcs = MetricLCS()
     matches = []
     for full_title in titles:
@@ -38,28 +39,26 @@ def get_close_matches(topic, titles):
     return matches
 
 
-# display strings in a numbered list
 def numbered_print(strings):
-    count = 1
+    '''Display strings in a numbered list.'''
     final = ""
-    for s in strings:
-        final += str(count) + '. ' + ", ".join(s) + "\n"
-        count += 1
+    for i, s in enumerate(strings):
+        final += str(i+1) + '. ' + ", ".join(s) + "\n"
     return final
 
 
 # state 1
 def get_topic(model_endpoint, topic, titles):
+    if topic.lower() == "stop":
+        return "Thank You for using QnAit, Hope your questions were answered!", 5, {}
+
     # hardcoded fun :)
     if topic == "What is the meaning of life?":
-        return "42\nIs there another topic you are curious about?", 1, {}
-    
-    if topic == "No":
-        return "Thank You for using QnAit, Hope your questions were answered!", 5, {}
+        return "42\n\nIf you are curious about another topic, reply with the topic.", 1, {}
 
     matches = get_close_matches(topic.title(), titles.keys())
     if len(matches) == 0:
-        return "Can you try rephrasing that or being more specific?", 1, {}
+        return "I couldn't find that topic. Can you try rephrasing that or being more specific?", 1, {}
     else:
 
         return "Ok, which of the following best matches the topic of your question?\n" + numbered_print(matches), 2, matches
@@ -69,7 +68,7 @@ def get_topic(model_endpoint, topic, titles):
 def narrow(model_endpoint, topic, titles):
     matches = get_close_matches(topic.title(), titles.keys())
     if len(matches) == 0:
-        return "Can you try rephrasing that or being more specific?", 1, {}
+        return "I couldn't find that topic. Can you try rephrasing that or being more specific?", 1, {}
     else:
         return "Ok, which of the following best matches the topic of your question?\n" + numbered_print(matches), 2, matches
 
@@ -89,8 +88,8 @@ def ask(model_endpoint, question, titles):
     json_data = {"paragraphs": [{"context": titles[choice][1],
                                  "questions": [question]}]}
     r = requests.post(url=model_endpoint, json=json_data).json()
-    return r["predictions"][0][0] + "\nIs there another topic you are curious about?", 1, {}
+    return r["predictions"][0][0] + "\n\nTo stop this session, type 'Stop'. \nIf you are curious about another topic, reply with the topic.", 1, {}
 
 # state 5
 def end(model_endpoint, topic, titles):
-    return "restarting app.. \n"+"Done \n" + "Hi! What would you like to learn about today?", 1, {}
+    return "restarting app...\n\n" + get_opening_message(), 1, {}

@@ -1,4 +1,2 @@
 strsim
-Flask
-requests
 numpy

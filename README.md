@@ -1,6 +1,6 @@
 # Create a machine learning powered web app to answer questions
 
-Ever found yourself wondering what the mitochondria is? Perhaps you are curious about how neurons communicate with each other? A Google search works well to answer your questions, but how about something still digestible, but more precise? This code pattern will show you how to build a chatbot that will answer questions found in a college biology textbook. In this pattern, the textbook used is [Biology 2e](https://books.google.com/books/about/Biology_2e.html?id=JLPQtwEACAAJ) by Mary Ann Clark, Matthew Douglas, and Jung Choi. 
+Ever found yourself wondering what mitochondria are? Perhaps you are curious about how neurons communicate with each other? A Google search works well to answer your questions, but how about something still digestible, but more precise? This code pattern will show you how to build a chatbot that will answer questions found in a college biology textbook. In this pattern, the textbook used is [Biology 2e](https://books.google.com/books/about/Biology_2e.html?id=JLPQtwEACAAJ) by Mary Ann Clark, Matthew Douglas, and Jung Choi. 
 
 The web app uses the [Model Asset eXchange (MAX) Question Answering Model](https://github.com/IBM/MAX-Question-Answering) to answer questions that are typed in by the user. The web application provides a chat-like interface that allows users to type in questions that are sent to a Flask python server. The backend then sends the question and related body of text from the textbook to a REST end point exposed by the MAX model which returns an answer to the question, displayed as a response from the chatbot. The model's REST endpoint is set up using the docker image
 provided on MAX.
@@ -17,6 +17,8 @@ When the reader has completed this Code Pattern, they will understand how to:
 1. User interacts with Web UI and asks questions until the query is narrow enough to select text from the textbook.
 2. Web UI requests answers from Server and updates chat when data is returned.
 3. Server sends question and body of text to Model API and receives answer data.
+
+![](example.png)
 
 ## Included Components
 
