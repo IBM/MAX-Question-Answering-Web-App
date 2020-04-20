@@ -14,21 +14,24 @@
 # limitations under the License.
 #
 
-import json
 import requests
 import random
 from similarity.metric_lcs import MetricLCS
 
+
 def get_opening_message():
     '''The variable starting message.'''
-    return f"Hi, my name is QnAit!\nI'm answering Biology questions today.\nTo get started, please provice a topic. For example: {random.choice(['brain', 'blood', 'cells'])}."
+    return f"Hi, my name is QnAit!\n\
+             I'm answering Biology questions today.\n\
+             To get started, please provice a topic. For example: {random.choice(['brain', 'blood', 'cells'])}."
+
 
 def get_choice():
     '''Return the value of the global `choice` variable'''
     return choice
 
 
-def get_close_matches(topic, titles, distance_threshold = 0.4):
+def get_close_matches(topic, titles, distance_threshold=0.4):
     '''Return matching titles for a topic.'''
     metric_lcs = MetricLCS()
     matches = []
@@ -88,7 +91,9 @@ def ask(model_endpoint, question, titles):
     json_data = {"paragraphs": [{"context": titles[choice][1],
                                  "questions": [question]}]}
     r = requests.post(url=model_endpoint, json=json_data).json()
-    return r["predictions"][0][0] + "\n\nTo stop this session, type 'Stop'. \nIf you are curious about another topic, reply with the topic.", 1, {}
+    return r["predictions"][0][0] + "\n\nTo stop this session, type 'Stop'. \n\
+              If you are curious about another topic, reply with the topic.", 1, {}
+
 
 # state 5
 def end(model_endpoint, topic, titles):

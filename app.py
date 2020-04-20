@@ -17,7 +17,6 @@
 from flask import Flask, render_template, request, jsonify
 from chatbot import get_opening_message, get_choice, get_topic, match, narrow, ask, end
 import json
-import random
 
 app = Flask(__name__)
 
@@ -34,6 +33,7 @@ textbook_data = None
 titles = None
 model_endpoint = "http://0.0.0.0:5000/model/predict"
 
+
 def flattened_titles(data):
     '''This function flattens textbook data for searching and matching user input to sections of the textbook.'''
     titles = {}
@@ -48,7 +48,7 @@ def flattened_titles(data):
 
 def get_subtitles(data, titles, title):
     '''
-    This function is used to narrow down the titles among which user input is matching 
+    This function is used to narrow down the titles among which user input is matching
     after they have already selected a chapter/section.
     '''
     raw_title = title[0]  # for searching textbook data, keys are strings not tuples
@@ -90,6 +90,7 @@ def chat():
     else:
         '''Start a conversation.'''
         return render_template("index.html", display_text=get_opening_message(), state=1)
+
 
 if __name__ == "__main__":
     # Load the textbook

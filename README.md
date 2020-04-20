@@ -1,4 +1,4 @@
-[![Website Status](https://img.shields.io/website/http/max-question-answering.max.us-south.containers.appdomain.cloud/swagger.json.svg?label=api+demo)](http://max-question-answering.max.us-south.containers.appdomain.cloud/) [![Website Status](https://img.shields.io/website/http/max-question-answering-web-app.max.us-south.containers.appdomain.cloud.svg)](http://max-question-answering-web-app.max.us-south.containers.appdomain.cloud/)
+[![Build Status](https://travis-ci.com/IBM/MAX-Question-Answering-Web-App.svg?branch=master)](https://travis-ci.com/github/IBM/MAX-Question-Answering-Web-App) [![Website Status](https://img.shields.io/website/http/max-question-answering.max.us-south.containers.appdomain.cloud/swagger.json.svg?label=api+demo)](http://max-question-answering.max.us-south.containers.appdomain.cloud/) [![Website Status](https://img.shields.io/website/http/max-question-answering-web-app.max.us-south.containers.appdomain.cloud.svg)](http://max-question-answering-web-app.max.us-south.containers.appdomain.cloud/)
 
 # Create a machine learning powered web app to answer questions
 
