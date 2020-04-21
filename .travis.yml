@@ -1,7 +1,11 @@
 language: python
 python:
   - "3.6"
+services:
+  - docker
 install:
+  - docker build -t max-question-answering-web-app .
+  - docker run -it -d -p 5000:5000 max-question-answering-web-app
   - pip install -r test-requirements.txt
 script:
   - flake8 . --max-line-length=127
