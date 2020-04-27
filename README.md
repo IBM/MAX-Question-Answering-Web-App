@@ -41,6 +41,22 @@ and web applications.
 
 # Steps
 
+Ways you can run this code pattern:
+- [Deploy on Kubernetes](#deploy-on-kubernetes)
+- [Run Locally](#run-locally)
+
+## Deploy on Kubernetes
+
+You can deploy the model and web app on Kubernetes using the latest docker images on Docker Hub.
+
+On your Kubernetes cluster, run the following commands:
+
+    kubectl apply -f https://raw.githubusercontent.com/IBM/MAX-Question-Answering/master/max-question-answering.yaml
+    kubectl apply -f https://raw.githubusercontent.com/IBM/MAX-Question-Answering-Web-App/master/max-question-answering-web-app.yaml
+
+The web app will be available at port `8088` of your cluster.
+The model will only be available internally, but can be accessed externally through the `NodePort`.
+
 ## Run Locally
 
 **Start the Model API**
