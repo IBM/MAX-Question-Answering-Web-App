@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/IBM/MAX-Question-Answering-Web-App.svg?branch=master)](https://travis-ci.com/github/IBM/MAX-Question-Answering-Web-App) [![Website Status](https://img.shields.io/website/http/max-question-answering.max.us-south.containers.appdomain.cloud/swagger.json.svg?label=api+demo)](http://max-question-answering.max.us-south.containers.appdomain.cloud/) [![Website Status](https://img.shields.io/website/http/max-question-answering-web-app.max.us-south.containers.appdomain.cloud.svg)](http://max-question-answering-web-app.max.us-south.containers.appdomain.cloud/)
+[![Build Status](https://travis-ci.com/IBM/MAX-Question-Answering-Web-App.svg?branch=master)](https://travis-ci.com/github/IBM/MAX-Question-Answering-Web-App) [![Website Status](https://img.shields.io/website/http/max-question-answering.codait-prod-41208c73af8fca213512856c7a09db52-0000.us-east.containers.appdomain.cloud/swagger.json.svg?label=api+demo)](http://max-question-answering.codait-prod-41208c73af8fca213512856c7a09db52-0000.us-east.containers.appdomain.cloud) [![Website Status](https://img.shields.io/website/http/max-question-answering-web-app.codait-prod-41208c73af8fca213512856c7a09db52-0000.us-east.containers.appdomain.cloud.svg)](http://max-question-answering-web-app.codait-prod-41208c73af8fca213512856c7a09db52-0000.us-east.containers.appdomain.cloud)
 
 # Create a machine learning powered web app to answer questions
 
@@ -98,7 +98,7 @@ contains samples you can use to test out the API, or you can use your own.
 
 You can also test it on the command line, for example:
 
-```
+```bash
 $ curl -X POST "http://localhost:5000/model/predict" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"paragraphs\": [{ \"context\": \"John lives in Brussels and works for the EU\", \"questions\": [\"Where does John Live?\",\"What does John do?\",\"What is his name?\" ]},{ \"context\": \"Jane lives in Paris and works for the UN\", \"questions\": [\"Where does Jane Live?\",\"What does Jane do?\" ]}]}"
 ```
 
