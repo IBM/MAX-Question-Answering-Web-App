@@ -47,7 +47,7 @@ Ways you can run this code pattern:
 
 ## Deploy on Kubernetes
 
-You can deploy the model and web app on Kubernetes using the latest docker images on Docker Hub.
+You can deploy the model and web app on Kubernetes using the latest docker images on Quay.
 
 On your Kubernetes cluster, run the following commands:
 
@@ -79,10 +79,10 @@ The model will only be available internally, but can be accessed externally thro
 To run the docker image, which automatically starts the model serving API, run:
 
 ```
-$ docker run -it -p 5000:5000 codait/max-question-answering
+$ docker run -it -p 5000:5000 quay.io/codait/max-question-answering
 ```
 
-This will pull a pre-built image from Docker Hub (or use an existing image if already cached locally) and run it.
+This will pull a pre-built image from Quay (or use an existing image if already cached locally) and run it.
 If you'd rather build and run the model locally, or deploy on a Kubernetes cluster, you can follow the steps in the
 [model README](https://github.ibm.com/CODAIT/MAX-Question-Answering#steps)
 
@@ -152,7 +152,7 @@ network stack. This is done in the following steps:
 Modify the command that runs the MAX Question Answering REST endpoint to map an additional port in the container to a
 port on the host machine. In the example below it is mapped to port `8000` on the host but other ports can also be used.
 
-    docker run -it -p 5000:5000 -p 8000:8000 --name max-question-answering codait/max-question-answering
+    docker run -it -p 5000:5000 -p 8000:8000 --name max-question-answering quay.io/codait/max-question-answering
     
 Build the web app image by running:
 
