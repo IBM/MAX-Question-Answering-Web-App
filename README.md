@@ -54,7 +54,7 @@ On your Kubernetes cluster, run the following commands:
     kubectl apply -f https://raw.githubusercontent.com/IBM/MAX-Question-Answering/master/max-question-answering.yaml
     kubectl apply -f https://raw.githubusercontent.com/IBM/MAX-Question-Answering-Web-App/master/max-question-answering-web-app.yaml
 
-The web app will be available at port `8088` of your cluster.
+The web app will be available at port `8000` of your cluster.
 The model will only be available internally, but can be accessed externally through the `NodePort`.
 
 ## Run Locally
@@ -141,7 +141,7 @@ You can then access the web app at: [`http://localhost:8000`](http://localhost:8
 If you want to use a different port or are running the model API at a different location you can change them with command-line options:
 
 ```
-$ python app.py --port=[new port] --model=[endpoint url including protocol and port]
+$ python app.py --port=8000 --ml-endpoint=http://localhost:5000
 ```
 
 #### Instructions for Docker (Optional)

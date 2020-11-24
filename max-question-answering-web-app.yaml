@@ -22,7 +22,7 @@ spec:
   selector:
     app: max-question-answering-web-app
   ports:
-  - port: 8088
+  - port: 8000
   type: LoadBalancer
 ---
 apiVersion: apps/v1
@@ -44,6 +44,6 @@ spec:
       containers:
       - name: max-question-answering-web-app
         image: quay.io/codait/max-question-answering-web-app:latest
-        command: ["python", "app.py", "--model=http://max-question-answering:5000"]
+        command: ["python", "app.py", "--ml-endpoint=http://max-question-answering:5000"]
         ports:
-        - containerPort: 8088
+        - containerPort: 8000

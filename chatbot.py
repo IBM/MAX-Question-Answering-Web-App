@@ -23,7 +23,7 @@ def get_opening_message():
     '''The variable starting message.'''
     return f"Hi, my name is QnAit!\n\
              I'm answering Biology questions today.\n\
-             To get started, please provice a topic. For example: {random.choice(['brain', 'blood', 'cells'])}."
+             To get started, please provide a topic. For example: {random.choice(['brain', 'blood', 'cells'])}."
 
 
 def get_choice():
