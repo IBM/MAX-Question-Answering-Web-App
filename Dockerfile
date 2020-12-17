@@ -14,11 +14,12 @@
 # limitations under the License.
 #
 
-FROM quay.io/codait/max-base:v1.3.2
+FROM quay.io/codait/max-base:v1.4.0
 
-COPY . /app
-WORKDIR /app
+COPY requirements.txt .
 RUN pip install --upgrade pip && pip install -r requirements.txt
+
+COPY . .
 
 EXPOSE 8000
 CMD python app.py
